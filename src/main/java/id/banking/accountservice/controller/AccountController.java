@@ -2,7 +2,8 @@ package id.banking.accountservice.controller;
 
 import id.banking.accountservice.dto.InquiryAccountRequest;
 import id.banking.accountservice.dto.InquiryAccountResponse;
-import id.banking.accountservice.service.detail.InquiryAccountService;
+import id.banking.accountservice.service.inquiry.InquiryAccountService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,12 @@ public class AccountController {
     private final InquiryAccountService inquiryAccountService;
 
 
-    @GetMapping("/inquiry-account")
-    public ResponseEntity<InquiryAccountResponse> inquiryAccountResponse(@RequestParam String account) {
-        return inquiryAccountService.inquiryAccountResponse(InquiryAccountRequest.builder().accNum(account).build());
+    @GetMapping("/inquiry-balance")
+    public ResponseEntity<InquiryAccountResponse> inquiryAccountResponse(@RequestParam String account, HttpServletRequest servletRequest) {
+        InquiryAccountRequest inquiryAccountRequest = InquiryAccountRequest.builder()
+                .accNum(account)
+                .build();
+        InquiryAccountResponse  response =  inquiryAccountService.inquiryAccountResponse(inquiryAccountRequest, servletRequest);
+        return ResponseEntity.ok(response);
     }
 }

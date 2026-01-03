@@ -18,4 +18,6 @@ public class InquiryAccountResponse implements Serializable {
     private String status;
     private String balanceFormated;
     private BigDecimal balance;
+    private String currency;
+    private String accountOwnerName;
 }

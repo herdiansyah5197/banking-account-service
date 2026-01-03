@@ -11,7 +11,8 @@ import java.io.Serializable;
 public class InquiryAccountRequest implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = -8360230218135311933L;
+    private static final long serialVersionUID = 5773400935594722929L;
     
     private String accNum;
+    private Long customerId;
 }
