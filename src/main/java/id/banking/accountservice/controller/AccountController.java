@@ -1,5 +1,6 @@
 package id.banking.accountservice.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import id.banking.accountservice.dto.InquiryAccountRequest;
 import id.banking.accountservice.dto.InquiryAccountResponse;
 import id.banking.accountservice.service.inquiry.InquiryAccountService;
@@ -20,11 +21,12 @@ public class AccountController {
 
 
     @GetMapping("/inquiry-balance")
-    public ResponseEntity<InquiryAccountResponse> inquiryAccountResponse(@RequestParam String account, HttpServletRequest servletRequest) {
+    public ResponseEntity<InquiryAccountResponse> inquiryAccountResponse(@RequestParam String account, HttpServletRequest servletRequest) throws JsonProcessingException {
         InquiryAccountRequest inquiryAccountRequest = InquiryAccountRequest.builder()
                 .accNum(account)
                 .build();
-        InquiryAccountResponse  response =  inquiryAccountService.inquiryAccountResponse(inquiryAccountRequest, servletRequest);
-        return ResponseEntity.ok(response);
+        InquiryAccountResponse  response =  inquiryAccountService.inquiryAccountBalanceResponse(inquiryAccountRequest, servletRequest);
+        return ResponseEntity
+                .ok(response);
     }
 }
