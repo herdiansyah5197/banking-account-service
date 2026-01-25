@@ -8,7 +8,6 @@ import id.banking.accountservice.dto.InquiryAccountResponse;
 import id.banking.accountservice.service.coreintegration.feign.AccountFeignClient;
 import id.banking.accountservice.util.FormatUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Service
 public class AccountCoreService {
@@ -19,7 +18,7 @@ public class AccountCoreService {
         this.accountFeignClient = accountFeignClient;
     }
 
-    public InquiryAccountResponse inquiryAccountResponse(@RequestParam String account) throws JsonProcessingException {
+    public InquiryAccountResponse inquiryAccountResponse(String account) throws JsonProcessingException {
         BalanceCustomerResponse response = accountFeignClient.balanceAccount(account).getBody();
         if(response!=null){
             return InquiryAccountResponse.builder()

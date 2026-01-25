@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @FeignClient(name = "accountFeignClient", url = "${url.core}")
-public interface AccountFeignClient {
+public interface    AccountFeignClient {
 
     @GetMapping(value = "/account/inquiry-balance", produces = "application/json")
     ResponseEntity<BalanceCustomerResponse> balanceAccount(@RequestParam String accountNumber);
