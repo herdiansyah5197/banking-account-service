@@ -24,7 +24,7 @@ services:
       SPRING_DATA_REDIS_PORT: 6379
       SPRING_PROFILES_ACTIVE: dev
       SERVER_SERVLET_CONTEXT_PATH: /api/accountservice
-      URL_CORE: http://account-service:8080/api/core-sumulation/v1/gateway
+      URL_CORE: http://account-service:8080/api/core-simulation/v1/gateway
     networks:
       - banking-network
 
