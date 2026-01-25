@@ -1,8 +1,14 @@
-package id.co.ist.digitalbanking.investmentgoldservice.util;
+package id.banking.accountservice.util;
 
 import lombok.experimental.UtilityClass;
+import org.springframework.stereotype.Component;
 
-@UtilityClass
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
+
+@Component
 public class FormatUtils {
 
     // masking after 5 digits from the front and 4 digits from behind
@@ -37,5 +43,18 @@ public class FormatUtils {
 
     public static String cleanLongWhitespace(String stringToTrim) {
         return stringToTrim.replaceAll("\\s+", " ");
+    }
+
+    public static String formatAmount(BigDecimal amount, String pattern) {
+        if (amount == null || pattern == null || pattern.trim().length()==0) {
+            return "";
+        }
+
+        Locale currentLocale = Locale.getDefault();
+        DecimalFormatSymbols otherSymbols = new DecimalFormatSymbols(currentLocale);
+        otherSymbols.setDecimalSeparator('.');
+        otherSymbols.setGroupingSeparator(',');
+        DecimalFormat df = new DecimalFormat(pattern, otherSymbols);
+        return df.format(amount);
     }
 }

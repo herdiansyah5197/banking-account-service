@@ -14,5 +14,4 @@ public class InquiryAccountRequest implements Serializable {
     private static final long serialVersionUID = 5773400935594722929L;
     
     private String accNum;
-    private Long customerId;
 }
